@@ -2,8 +2,8 @@ export default class Sprite {
     /* Responsável por modelar algo que se move dentro da cena
      */
     constructor({
-        x = 100,
-        y = 100,
+        x = 50,
+        y = 50,
         w = 20,
         h = 20,
         color = "white",
@@ -17,10 +17,12 @@ export default class Sprite {
         this.vx = vx
         this.vy = vy
         this.color = color
+
     }
     desenhar(ctx) {
         ctx.fillStyle = this.color
         ctx.fillRect(this.x, this.y, this.w, this.h)
+
     }
     passo(dt) {
         this.x = this.x + this.vx * dt
