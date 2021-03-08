@@ -8,6 +8,7 @@ export default class Cena {
         this.sprites = []
         this.t0 = 0
         this.dt = 0;
+        this.aRemover = []
         this.idAnim = null;
     }
     desenhar() {
@@ -17,7 +18,7 @@ export default class Cena {
             const sprite = this.sprites[s];
             sprite.desenhar(this.ctx)
         }
-    
+
     }
 
     adicionar(sprite) {
@@ -51,13 +52,17 @@ export default class Cena {
         this.dt = 0
     }
     checaColisao() {
-        for (let a = 0; a < this.sprites.length-1; a++) {
+        for (let a = 0; a < this.sprites.length - 1; a++) {
             for (let b = a + 1; b < this.sprites.length; b++) {
-                if(this.sprites[a].colidiuCom(this.sprites[b]))
-                console.log(this.sprites[a], this.sprites[b] )
-
+                if (this.sprites[a].colidiuCom(this.sprites[b]))
+                    this.quandoColidir(this.sprites[a], this.sprites[b])
             }
         }
     }
-
+    quandoColidir(a, b) {
+        if (!this.aRemover.includes(a))
+            this.aRemover.push(a)
+        if (!this.aRemover.includes(b))
+            this.aRemover.push(b)
+    }
 }
