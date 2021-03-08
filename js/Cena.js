@@ -2,7 +2,7 @@ export default class Cena {
     /* 
         Responsável por desenhar elementos na tela em uma animação
     */
-    constructor(canvas) {
+    constructor(canvas, assets = null) {
         this.canvas = canvas
         this.ctx = canvas.getContext("2d")
         this.sprites = []
@@ -10,6 +10,7 @@ export default class Cena {
         this.dt = 0;
         this.aRemover = []
         this.idAnim = null;
+        this.assets = assets
     }
     desenhar() {
         this.ctx.fillStyle = "blue"
@@ -18,7 +19,8 @@ export default class Cena {
             const sprite = this.sprites[s];
             sprite.desenhar(this.ctx)
         }
-
+        this.ctx.fillStyle = "yellow"
+        this.ctx.fillText(this.assets?.progresso(), 10, 20)
     }
 
     adicionar(sprite) {
@@ -39,7 +41,7 @@ export default class Cena {
         this.checaColisao()
         this.t0 = t
         this.iniciar()
-
+        this.removeSprites()
     }
     iniciar() {
         this.idAnim = requestAnimationFrame((t) => {
@@ -64,5 +66,14 @@ export default class Cena {
             this.aRemover.push(a)
         if (!this.aRemover.includes(b))
             this.aRemover.push(b)
+    }
+
+    removeSprites() {
+        this.aRemover.forEach(alvo => {
+            const idx = this.sprites.indexOf(alvo)
+            if (idx >= 0)
+                this.sprites.splice(idx, 1)
+        });
+
     }
 }
