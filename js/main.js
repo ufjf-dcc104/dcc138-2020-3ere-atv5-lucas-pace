@@ -17,5 +17,7 @@ const pc1 = new Sprite({
 cena1.adicionar(pc)
 cena1.adicionar(pc1)
 
+
+cena1.passo(0.16)
 cena1.desenhar()
 
