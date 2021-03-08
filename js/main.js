@@ -28,16 +28,14 @@ cena1.adicionar(new Sprite({
 cena1.iniciar()
 
 
-const img1 = new Image();
-img1.src = "assets/human.png"
-const img2 = new Image();
-img2.src = "assets/skelly.png"
-const img3 = new Image();
-img3.src = "assets/orc.png"
+assets.carregarImagem("human","assets/human.png")
+assets.carregarImagem("orc","assets/orc.png")
+assets.carregarImagem("skelly","assets/skelly.png")
 
-document.body.appendChild(img1)
-document.body.appendChild(img2)
-document.body.appendChild(img3)
+
+document.body.appendChild(assets.img("human"))
+document.body.appendChild(assets.img("orc"))
+document.body.appendChild(assets.img("skelly"))
 
 
 document.addEventListener("keydown", (e) =>{
