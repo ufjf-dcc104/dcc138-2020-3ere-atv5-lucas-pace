@@ -4,8 +4,8 @@ export default class Sprite {
     constructor({
         x = 50,
         y = 50,
-        w = 20,
         h = 20,
+        w = 20,
         color = "white",
         vx = 0,
         vy = 0
@@ -28,5 +28,15 @@ export default class Sprite {
         this.x = this.x + this.vx * dt
         this.y = this.y + this.vy * dt
     }
+
+    colidiuCom(outro) {
+        return !(
+            (this.x > outro.x + outro.w) ||
+            (this.x + this.w < outro.x) ||
+            (this.y > outro.y + outro.h) ||
+            (this.y + this.h < outro.y)
+        )
+    }
+
 
 }

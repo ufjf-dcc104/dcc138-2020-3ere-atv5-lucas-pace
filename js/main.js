@@ -7,7 +7,7 @@ const ctx = canvas.getContext("2d")
 const pc = new Sprite();
 const pc1 = new Sprite({
     vx: 10,
-    x: 140,
+    x: 10,
     y: 30,
     color: "green"
 });

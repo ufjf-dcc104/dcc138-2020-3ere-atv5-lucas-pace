@@ -35,7 +35,7 @@ export default class Cena {
 
         this.passo(this.dt)
         this.desenhar()
-        
+        this.checaColisao()
         this.t0 = t
         this.iniciar()
 
@@ -50,4 +50,14 @@ export default class Cena {
         this.t0 = null
         this.dt = 0
     }
+    checaColisao() {
+        for (let a = 0; a < this.sprites.length-1; a++) {
+            for (let b = a + 1; b < this.sprites.length; b++) {
+                if(this.sprites[a].colidiuCom(this.sprites[b]))
+                console.log(this.sprites[a], this.sprites[b] )
+
+            }
+        }
+    }
+
 }
