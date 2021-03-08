@@ -31,11 +31,9 @@ cena1.iniciar()
 assets.carregarImagem("human","assets/human.png")
 assets.carregarImagem("orc","assets/orc.png")
 assets.carregarImagem("skelly","assets/skelly.png")
+assets.carregarAudio("zap","assets/zap.wav")
 
 
-document.body.appendChild(assets.img("human"))
-document.body.appendChild(assets.img("orc"))
-document.body.appendChild(assets.img("skelly"))
 
 
 document.addEventListener("keydown", (e) =>{
