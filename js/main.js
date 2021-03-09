@@ -32,6 +32,7 @@ assets.carregarImagem("human","assets/human.png")
 assets.carregarImagem("orc","assets/orc.png")
 assets.carregarImagem("skelly","assets/skelly.png")
 assets.carregarAudio("zap","assets/zap.wav")
+assets.carregarAudio("boom","assets/boom.wav")
 
 
 
@@ -46,6 +47,9 @@ document.addEventListener("keydown", (e) =>{
             break;
         case "c":
             assets.audio("zap").play()
+            break;
+        case "b":
+            assets.audio("boom").play()
             break;
     }
   
