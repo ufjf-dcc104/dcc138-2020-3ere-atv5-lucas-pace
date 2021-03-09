@@ -1,5 +1,6 @@
 import AssetManager from './AssetManager.js';
 import Cena from './Cena.js'
+import Mixer from './Mixer.js';
 import Sprite from './Sprites.js';
 
 
@@ -7,6 +8,7 @@ const assets = new AssetManager();
 const canvas = document.querySelector("canvas");
 const cena1 = new Cena(canvas, assets);
 const ctx = canvas.getContext("2d")
+const mixer = new Mixer(10)
 
 const pc = new Sprite();
 const pc1 = new Sprite({
@@ -46,10 +48,10 @@ document.addEventListener("keydown", (e) =>{
             cena1.parar()
             break;
         case "c":
-            assets.audio("zap").play()
+            mixer.play(assets.audio("zap"))
             break;
         case "b":
-            assets.audio("boom").play()
+            mixer.play(assets.audio("boom"))
             break;
     }
   
