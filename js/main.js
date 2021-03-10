@@ -17,18 +17,21 @@ const mapa1 = new Mapa(10,14,32)
 mapa1.carregaMapa(modeloMapa1);
 cena1.configuraMapa(mapa1)
 
-const pc = new Sprite();
+const pc = new Sprite({
+    x: 300,
+    y: 50
+});
 const pc1 = new Sprite({
     vx: 10,
-    x: 10,
-    y: 30,
+    x: 100,
+    y: 50,
     color: "green"
 });
 cena1.adicionar(pc)
 cena1.adicionar(pc1)
 cena1.adicionar(new Sprite({
     vx: 10,
-    x: 10,
+    x: 100,
     y: 100,
     color: "red"
 }))
