@@ -32,7 +32,7 @@ cena1.adicionar(pc1)
 cena1.adicionar(new Sprite({
     vx: 10,
     x: 100,
-    y: 100,
+    y: 80,
     color: "red"
 }))
 
