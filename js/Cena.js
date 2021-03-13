@@ -1,7 +1,11 @@
+import SpriteSummon from "./SpriteSummon.js";
+
+var self = this
 export default class Cena {
     /* 
         Responsável por desenhar elementos na tela em uma animação
     */
+   
     constructor(canvas, assets = null) {
         this.canvas = canvas
         this.ctx = canvas.getContext("2d")
@@ -12,11 +16,16 @@ export default class Cena {
         this.idAnim = null;
         this.assets = assets
         this.mapa = null
-    }
+        this.summonSprite = false // se deve ser summonado ou nao
+         // true se ainda nao foi inicializado
+}
+
+
+
     desenhar() {
         this.ctx.fillStyle = "lightblue"
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height)
-        this.mapa?.desenhar(this.ctx)
+        this.mapa ?.desenhar(this.ctx)
         if (this.assets.acabou())
             for (let s = 0; s < this.sprites.length; s++) {
                 const sprite = this.sprites[s];
@@ -25,11 +34,14 @@ export default class Cena {
             }
         this.ctx.fillStyle = "yellow"
         this.ctx.fillText(this.assets ?.progresso(), 10, 20)
+        
     }
 
     adicionar(sprite) {
         sprite.cena = this
-        this.sprites.push(sprite)
+        if (sprite.checarValido()) // check para nao criar sprite se estiver numa posicao invalida
+            this.sprites.push(sprite)
+        else return null;
     }
 
     passo(dt) {
@@ -54,6 +66,7 @@ export default class Cena {
         this.idAnim = requestAnimationFrame((t) => {
             this.quadro(t)
         });
+        
     }
     parar() {
         cancelAnimationFrame(this.idAnim)
@@ -88,4 +101,7 @@ export default class Cena {
         this.mapa = mapa
         this.mapa.cena = this
     }
+
+
+
 }

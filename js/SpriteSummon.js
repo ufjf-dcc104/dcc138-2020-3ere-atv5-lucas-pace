@@ -5,10 +5,12 @@ Cria quantidade X de sprites numa cena com os X e Y dentro de um intervalo
 */
 
 export default class SpriteSummon {
-    constructor(quantidade, cena, maxW, maxH) {
+    constructor(quantidade = 0, cena, maxW, maxH) {
+        this.quantidade = quantidade
+        this.cena = cena
         for (var i = 0; i < quantidade; i++) {
-            const posX = Math.random() * (maxW - 64) + 32
-            const posY = Math.random() * (maxH - 64) + 32
+            const posX = Math.random() * (maxW - 66) + 33
+            const posY = Math.random() * (maxH - 66) + 33
 
             const sprite = new Sprite({
                 vx: (Math.floor(Math.random() * (25 - 5)) + 5) * (Math.random() < 0.5 ? -1 : 1),
@@ -23,5 +25,8 @@ export default class SpriteSummon {
                 i--
 
         }
+        
     }
+
+
 }

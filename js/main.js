@@ -5,6 +5,7 @@ import Mixer from './Mixer.js';
 import Sprite from './Sprites.js';
 import modeloMapa1 from '../maps/mapa1.js'
 import SpriteSummon from './SpriteSummon.js';
+import SpriteSummonInterval from './SpriteSummonInterval.js';
 
 const mapX = 15;
 const mapY = 15;
@@ -20,7 +21,13 @@ const mapa1 = new Mapa(mapX, mapY, 32)
 mapa1.carregaMapa(modeloMapa1);
 cena1.configuraMapa(mapa1)
 
-new SpriteSummon(10, cena1,canvas.width,canvas.height);
+//const summon = new SpriteSummon(1, cena1, canvas.width, canvas.height)
+const summonInterval = new SpriteSummonInterval(cena1,2,canvas.width,canvas.height)
+cena1.summonSprite = true; //boleano para habilitar o summon de sprite na cena
+summonInterval.startSummon()
+
+//new SpriteSummon(100, cena1,canvas.width,canvas.height);
+
 // const pc = new Sprite({
 //     vx: 0,
 //     vy: 10,

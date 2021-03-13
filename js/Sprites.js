@@ -33,6 +33,15 @@ export default class Sprite {
         )
 
     }
+
+    getMx() {
+        return Math.floor(this.x / this.cena.mapa.SIZE)
+    }
+
+    getMy() {
+        return Math.floor(this.y / this.cena.mapa.SIZE)
+    }
+
     passo(dt) {
 
         this.x = this.x + this.vx * dt
@@ -151,6 +160,14 @@ export default class Sprite {
                     this.y = tile.y + tile.h / 2 + this.h / 2 + 1
                 }
             }
+        }
+    }
+
+    checarValido() {
+        var mx = Math.floor(this.x / this.cena.mapa.SIZE)
+        var my = Math.floor(this.y / this.cena.mapa.SIZE)
+        if (this.cena.mapa.tiles[my][mx] == 0) {
+            return true;
         }
     }
 
