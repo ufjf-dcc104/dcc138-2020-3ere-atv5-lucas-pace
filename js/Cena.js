@@ -86,7 +86,7 @@ export default class Cena {
             this.aRemover.push(a)
         if (!this.aRemover.includes(b))
             this.aRemover.push(b)
-        console.log(this.assets.play('boom'))
+        this.assets.play('boom')
     }
 
     removeSprites() {
