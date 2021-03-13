@@ -9,7 +9,7 @@ export default class SpriteSummon {
         for (var i = 0; i < quantidade; i++) {
             const posX = Math.random() * (maxW - 64) + 32
             const posY = Math.random() * (maxH - 64) + 32
-            console.log(posX + ' ' + posY)
+
             const sprite = new Sprite({
                 vx: (Math.floor(Math.random() * (25 - 5)) + 5) * (Math.random() < 0.5 ? -1 : 1),
                 vy: (Math.floor(Math.random() * (25 - 5)) + 5) * (Math.random() < 0.5 ? -1 : 1),
@@ -17,8 +17,11 @@ export default class SpriteSummon {
                 y: posY,
                 color: "white"
             })
-            cena.adicionar(sprite)
-            console.log(sprite)
+            var returned = cena.adicionar(sprite)
+            // se não for uma posicao valida, criar outro sprite
+            if (returned === null)
+                i--
+
         }
     }
 }
