@@ -22,7 +22,7 @@ mapa1.carregaMapa(modeloMapa1);
 cena1.configuraMapa(mapa1)
 
 //const summon = new SpriteSummon(1, cena1, canvas.width, canvas.height)
-const summonInterval = new SpriteSummonInterval(cena1,2,canvas.width,canvas.height)
+const summonInterval = new SpriteSummonInterval(cena1, 4000, canvas.width, canvas.height)
 cena1.summonSprite = true; //boleano para habilitar o summon de sprite na cena
 summonInterval.startSummon()
 

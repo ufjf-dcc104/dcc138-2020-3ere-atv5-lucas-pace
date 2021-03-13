@@ -8,7 +8,7 @@ Cria quantidade X de sprites numa cena com os X e Y dentro de um intervalo
 export default class SpriteSummonInterval {
     constructor(cena, interval, width, height) {
         this.cena = cena;
-        this.interval = 4000;
+        this.interval = interval;
         this.width = width
         this.height = height
     }
