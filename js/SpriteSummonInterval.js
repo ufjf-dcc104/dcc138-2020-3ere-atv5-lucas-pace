@@ -19,7 +19,7 @@ export default class SpriteSummonInterval {
         }
     }
     summonByTime() {
-        new SpriteSummon(2, this.cena, this.width, this.height)
+        new SpriteSummon(1, this.cena, this.width, this.height)
         setTimeout(this.summonByTime.bind(this), this.interval);
     }
 

@@ -4,6 +4,7 @@ import Mapa from './Mapa.js';
 import Mixer from './Mixer.js';
 import Sprite from './Sprites.js';
 import modeloMapa1 from '../maps/mapa1.js'
+
 import SpriteSummon from './SpriteSummon.js';
 import SpriteSummonInterval from './SpriteSummonInterval.js';
 
@@ -17,7 +18,7 @@ canvas.width = mapX * 32
 canvas.height = mapY * 32
 const cena1 = new Cena(canvas, assets);
 const ctx = canvas.getContext("2d")
-const mapa1 = new Mapa(mapX, mapY, 32)
+const mapa1 = new Mapa(mapX, mapY, 32, assets)
 mapa1.carregaMapa(modeloMapa1);
 cena1.configuraMapa(mapa1)
 
@@ -56,11 +57,11 @@ cena1.iniciar()
 assets.carregarImagem("human", "assets/human.png")
 assets.carregarImagem("orc", "assets/orc.png")
 assets.carregarImagem("skelly", "assets/skelly.png")
+assets.carregarImagem("terreno", "assets/terreno.png")
 assets.carregarAudio("zap", "assets/zap.wav")
 assets.carregarAudio("boom", "assets/boom.wav")
 
-
-
+console.log('a')
 
 document.addEventListener("keydown", (e) => {
     switch (e.key) {
