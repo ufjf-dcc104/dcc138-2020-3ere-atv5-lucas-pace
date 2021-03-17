@@ -8,6 +8,7 @@ import ImputManager from './InputManager.js'
 
 import SpriteSummon from './SpriteSummon.js';
 import SpriteSummonInterval from './SpriteSummonInterval.js';
+import Game from './Game.js';
 
 const mapX = 15;
 const mapY = 15;
@@ -28,7 +29,10 @@ input.configurarTeclado({
 })
 
 
+const game = new Game(canvas, assets, input)
+
 const cena1 = new Cena(canvas, assets);
+game.adicionarCena("jogo", cena1)
 const ctx = canvas.getContext("2d")
 const mapa1 = new Mapa(mapX, mapY, 32, assets)
 
