@@ -19,7 +19,6 @@ export default class InputManager {
                
             }
         })
-
         addEventListener("keyup", function(e) {
             const comando = that.teclas.get(e.key)
             if(comando){
