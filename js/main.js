@@ -96,7 +96,6 @@ cena1.adicionar(new Sprite({
 }))
 
 
-cena1.iniciar()
 
 
 assets.carregarImagem("human", "assets/human.png")
@@ -106,15 +105,15 @@ assets.carregarImagem("terreno", "assets/terreno.png")
 assets.carregarAudio("zap", "assets/zap.wav")
 assets.carregarAudio("boom", "assets/boom.wav")
 
-console.log('a')
+game.iniciar()
 
 document.addEventListener("keydown", (e) => {
     switch (e.key) {
         case 's':
-            cena1.iniciar();
+            game.iniciar();
             break;
         case "S":
-            cena1.parar()
+            game.parar()
             break;
         case "c":
             assets.play("zap")

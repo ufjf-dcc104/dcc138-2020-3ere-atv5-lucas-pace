@@ -6,6 +6,8 @@ export default class Game {
         this.cena = null
         this.input = input
         this.game = null
+
+        
     }
     adicionarCena(chave,cena){
         this.cenas.set(chave,cena)
@@ -14,5 +16,21 @@ export default class Game {
         cena.assets = this.assets
         cena.input = this.input
 
+
+        if(this.cena === null){
+            this.cena = cena
+        }
+    }
+
+    selecionaCena(chave){
+        if(this.cenas.has(chave)){
+            this.cena = this.cenas.get(chave)
+        }
+    }
+    iniciar(){
+        this.cena?.iniciar()
+    }
+    parar(){
+        this.cena?.parar()
     }
 }
