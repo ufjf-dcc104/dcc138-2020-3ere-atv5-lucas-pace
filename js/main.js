@@ -49,23 +49,19 @@ const pc = new Sprite({
     x: 300,
     y: 50
 });
-pc.controlar = function(dt){
-    if(input.comandos.get("MOVE_ESQUERDA")){
+pc.controlar = function (dt) {
+    if (input.comandos.get("MOVE_ESQUERDA")) {
         this.vx = -50
-    }
-    else if(input.comandos.get("MOVE_DIREITA")){
+    } else if (input.comandos.get("MOVE_DIREITA")) {
         this.vx = 50
-    }
-    else {
+    } else {
         this.vx = 0
     }
-    if(input.comandos.get("MOVE_CIMA")){
+    if (input.comandos.get("MOVE_CIMA")) {
         this.vy = -50
-    }
-    else if(input.comandos.get("MOVE_BAIXO")){
+    } else if (input.comandos.get("MOVE_BAIXO")) {
         this.vy = 50
-    }
-    else {
+    } else {
         this.vy = 0
     }
 }
@@ -74,15 +70,25 @@ const pc1 = new Sprite({
     vx: 0,
     x: 100,
     y: 50,
-    color: "silver"
+    color: "silver",
+    controlar: perseguePC
 });
 cena1.adicionar(pc)
+
+function perseguePC(dt) {
+    this.vx = 25 * Math.sign(pc.x - this.x)
+    this.vy = 25*Math.sign(pc.y - this.y)
+}
+
+
 cena1.adicionar(pc1)
+
 cena1.adicionar(new Sprite({
     vx: 40,
     x: 100,
-    y: 110,
-    color: "red"
+    y: 300,
+    color: "red",
+    controlar: perseguePC
 }))
 
 

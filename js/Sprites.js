@@ -8,7 +8,8 @@ export default class Sprite {
         w = 20,
         color = "white",
         vx = 0,
-        vy = 0
+        vy = 0,
+        controlar = () => {}
     } = {}) {
         this.x = x
         this.y = y
@@ -20,6 +21,7 @@ export default class Sprite {
         this.cena = null
         this.mx = 0
         this.my = 0
+        this.controlar = controlar
 
     }
     desenhar(ctx) {
@@ -166,11 +168,11 @@ export default class Sprite {
         }
     }
 
-    controlar(dt){
-        
+    controlar(dt) {
+
     }
 
-    mover(dt){
+    mover(dt) {
         this.x = this.x + this.vx * dt
         this.y = this.y + this.vy * dt
         this.mx = Math.floor(this.x / this.cena.mapa.SIZE)
