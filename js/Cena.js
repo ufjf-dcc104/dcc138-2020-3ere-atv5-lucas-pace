@@ -6,18 +6,12 @@ export default class Cena {
         Responsável por desenhar elementos na tela em uma animação
     */
 
-    constructor(canvas, assets = null) {
+    constructor(canvas = null, assets = null) {
         this.canvas = canvas;
-        this.ctx = canvas.getContext("2d");
-        this.sprites = [];
-        this.t0 = null;
-        this.dt = 0;
-        this.aRemover = [];
-        this.idAnim = null;
+        this.ctx = canvas?.getContext("2d");
         this.assets = assets;
-        this.mapa = null;
-        this.summonSprite = false; // se deve ser summonado ou nao
-        // true se ainda nao foi inicializado
+        this.game = null;
+        this.preparar();
     }
 
     desenhar() {
@@ -57,15 +51,17 @@ export default class Cena {
         this.desenhar();
         this.checaColisao();
         this.t0 = t;
-        this.iniciar();
+        if (this.rodando) this.iniciar();
         this.removeSprites();
     }
     iniciar() {
+        this.rodando = true;
         this.idAnim = requestAnimationFrame((t) => {
             this.quadro(t);
         });
     }
     parar() {
+        this.rodando = false;
         cancelAnimationFrame(this.idAnim);
         this.t0 = null;
         this.dt = 0;
@@ -94,5 +90,22 @@ export default class Cena {
     configuraMapa(mapa) {
         this.mapa = mapa;
         this.mapa.cena = this;
+    }
+
+    preparar() {
+        const mapX = 15;
+        const mapY = 15;
+        this.canvas.width = mapX * 32;
+        this.canvas.height = mapY * 32;
+
+        this.sprites = [];
+        this.t0 = null;
+        this.dt = 0;
+        this.aRemover = [];
+        this.idAnim = null;
+        this.mapa = null;
+        this.summonSprite = false; // se deve ser summonado ou nao
+        // true se ainda nao foi inicializado
+        this.rodando = true;
     }
 }
