@@ -10,7 +10,7 @@ export default class Cena {
         this.canvas = canvas;
         this.ctx = canvas.getContext("2d");
         this.sprites = [];
-        this.t0 = 0;
+        this.t0 = null;
         this.dt = 0;
         this.aRemover = [];
         this.idAnim = null;
