@@ -7,7 +7,7 @@ export default class Game {
         this.input = input
         this.game = null
 
-        
+
     }
     adicionarCena(chave,cena){
         this.cenas.set(chave,cena)

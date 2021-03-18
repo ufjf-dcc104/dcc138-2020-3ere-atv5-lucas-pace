@@ -1,5 +1,6 @@
 import AssetManager from './AssetManager.js';
 import Cena from './Cena.js'
+import CenaJogo from './CenaJogo.js'
 import Mapa from './Mapa.js';
 import Mixer from './Mixer.js';
 import Sprite from './Sprites.js';
@@ -9,6 +10,7 @@ import ImputManager from './InputManager.js'
 import SpriteSummon from './SpriteSummon.js';
 import SpriteSummonInterval from './SpriteSummonInterval.js';
 import Game from './Game.js';
+import CenaCarregando from './CenaCarregando.js';
 
 const mapX = 15;
 const mapY = 15;
@@ -31,7 +33,9 @@ input.configurarTeclado({
 
 const game = new Game(canvas, assets, input)
 
-const cena1 = new Cena(canvas, assets);
+const cena0 = new CenaCarregando(canvas, assets);
+const cena1 = new CenaJogo(canvas, assets);
+game.adicionarCena("carregando", cena0)
 game.adicionarCena("jogo", cena1)
 const ctx = canvas.getContext("2d")
 const mapa1 = new Mapa(mapX, mapY, 32, assets)
