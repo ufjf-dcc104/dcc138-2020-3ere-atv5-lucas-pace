@@ -4,13 +4,15 @@ export default class Sprite {
     constructor({
         x = 50,
         y = 50,
-        h = 20,
-        w = 20,
+        h = 32,
+        w = 32,
         color = "white",
         vx = 0,
         vy = 0,
         controlar = () => {},
         tags = [],
+        assets = null,
+        t = 0,
     } = {}) {
         this.x = x;
         this.y = y;
@@ -24,7 +26,10 @@ export default class Sprite {
         this.my = 0;
         this.controlar = controlar;
         this.tags = new Set();
-
+        this.assets = assets;
+        this.t = t;
+        this.quadro = 0;
+        this.pose = 0;
         tags.forEach((tag) => {
             this.tags.add(tag);
         });
@@ -105,8 +110,6 @@ export default class Sprite {
     aplicaRestricoesEsquerda(pmx, pmy) {
         const SIZE = this.cena.mapa.SIZE;
         if (this.vx < 0) {
-            const pmx = this.mx - 1;
-            const pmy = this.my;
             if (this.cena.mapa.tiles[pmy][pmx] != 0) {
                 const tile = {
                     x: pmx * SIZE + SIZE / 2,

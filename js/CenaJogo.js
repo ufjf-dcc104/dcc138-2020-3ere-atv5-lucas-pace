@@ -4,6 +4,7 @@ import SpriteSummonInterval from "./SpriteSummonInterval.js";
 import Sprite from "./Sprites.js";
 import modeloMapa1 from "../maps/mapa1.js";
 import Mapa from "./Mapa.js";
+import SpriteWyvern from "./SpriteWyvern.js";
 
 export default class CenaJogo extends Cena {
     quandoColidir(a, b) {
@@ -31,58 +32,64 @@ export default class CenaJogo extends Cena {
 
         //new SpriteSummon(100, this,canvas.width,canvas.height);
 
-        const pc = new Sprite({
+        const pc = new SpriteWyvern({
             vx: 0,
             vy: 10,
             x: 100,
             y: 100,
+            assets: this.assets,
+            t: this.t
         });
 
         const cena = this
         pc.controlar = function (dt) {
             if (cena.game.input.comandos.get("MOVE_ESQUERDA")) {
                 this.vx = -50;
+                this.pose = 1
             } else if (cena.game.input.comandos.get("MOVE_DIREITA")) {
                 this.vx = 50;
+                this.pose = 2
             } else {
                 this.vx = 0;
             }
             if (cena.game.input.comandos.get("MOVE_CIMA")) {
                 this.vy = -50;
+                this.pose = 3
             } else if (cena.game.input.comandos.get("MOVE_BAIXO")) {
                 this.vy = 50;
+                this.pose = 0
             } else {
                 this.vy = 0;
             }
         };
         pc.tags.add("pc");
-
-        const pc1 = new Sprite({
-            vx: 0,
-            x: 100,
-            y: 50,
-            color: "silver",
-            controlar: perseguePC,
-            tags: ["enemy"],
-        });
         this.adicionar(pc);
 
-        function perseguePC(dt) {
-            this.vx = 25 * Math.sign(pc.x - this.x);
-            this.vy = 25 * Math.sign(pc.y - this.y);
-        }
+        // const pc1 = new Sprite({
+        //     vx: 0,
+        //     x: 100,
+        //     y: 50,
+        //     color: "silver",
+        //     controlar: perseguePC,
+        //     tags: ["enemy"],
+        // });
 
-        this.adicionar(pc1);
+        // function perseguePC(dt) {
+        //     this.vx = 25 * Math.sign(pc.x - this.x);
+        //     this.vy = 25 * Math.sign(pc.y - this.y);
+        // }
 
-        this.adicionar(
-            new Sprite({
-                vx: 40,
-                x: 100,
-                y: 300,
-                color: "red",
-                controlar: perseguePC,
-                tags: ["enemy"],
-            })
-        );
+        // this.adicionar(pc1);
+
+        // this.adicionar(
+        //     new Sprite({
+        //         vx: 40,
+        //         x: 100,
+        //         y: 300,
+        //         color: "red",
+        //         controlar: perseguePC,
+        //         tags: ["enemy"],
+        //     })
+        // );
     }
 }

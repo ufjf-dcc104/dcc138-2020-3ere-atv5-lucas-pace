@@ -41,6 +41,7 @@ game.adicionarCena("fim", cena2);
 const ctx = canvas.getContext("2d");
 
 assets.carregarImagem("human", "assets/human.png");
+assets.carregarImagem("wyvern", "assets/wyvern.png");
 assets.carregarImagem("orc", "assets/orc.png");
 assets.carregarImagem("skelly", "assets/skelly.png");
 assets.carregarImagem("terreno", "assets/terreno.png");
