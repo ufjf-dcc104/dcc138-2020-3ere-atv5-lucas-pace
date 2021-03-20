@@ -8,6 +8,7 @@ import SpriteWyvern from "./SpriteWyvern.js";
 import SpriteCoin from "./SpriteCoin.js";
 
 export default class CenaJogo extends Cena {
+
     quandoColidir(a, b) {
         if (a.tags.has("pc") && b.tags.has("coin")) {
             if (!this.aRemover.includes(b)) this.aRemover.push(b);
@@ -17,8 +18,13 @@ export default class CenaJogo extends Cena {
             if (!this.aRemover.includes(a)) this.aRemover.push(a);
             this.pontos++;
             return;
-        } else if (!this.aRemover.includes(a)) this.aRemover.push(a);
+        } else if (){
+
+
+        }
+        else (!this.aRemover.includes(a)) this.aRemover.push(a);
     }
+
 
     preparar() {
         super.preparar();
@@ -42,9 +48,11 @@ export default class CenaJogo extends Cena {
 
         const pc = new SpriteWyvern({
             vx: 0,
-            vy: 10,
+            vy: 0,
             x: 100,
             y: 100,
+            w: 32,
+            h: 32,
             assets: this.assets,
             //t: this.t
         });
@@ -73,16 +81,16 @@ export default class CenaJogo extends Cena {
         pc.tags.add("pc");
         this.adicionar(pc);
 
-        const pc1 = new SpriteCoin({
-            vx: 0,
-            x: 100,
-            y: 50,
-            w: 14,
-            h: 14,
-            tags: ["coin"],
-            assets: this.assets,
-        });
-        this.adicionar(pc1);
+        // const pc1 = new SpriteCoin({
+        //     vx: 0,
+        //     x: 100,
+        //     y: 50,
+        //     w: 14,
+        //     h: 14,
+        //     tags: ["coin"],
+        //     assets: this.assets,
+        // });
+        // this.adicionar(pc1);
 
         // function perseguePC(dt) {
         //     this.vx = 25 * Math.sign(pc.x - this.x);
@@ -104,7 +112,7 @@ export default class CenaJogo extends Cena {
     }
 
     desenhar() {
-        this.ctx.fillStyle = "lightblue";
+        this.ctx.fillStyle = "rgba(0,0,0,.2)";
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
         this.mapa?.desenhar(this.ctx);
         if (this.assets.acabou())
