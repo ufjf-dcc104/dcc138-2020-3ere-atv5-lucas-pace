@@ -13,6 +13,7 @@ export default class Cena {
         this.game = null;
         this.pontos = 0
         this.preparar();
+        this.fase = 2;
     }
 
     desenhar() {

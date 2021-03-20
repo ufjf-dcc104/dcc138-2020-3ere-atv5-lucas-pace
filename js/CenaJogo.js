@@ -3,12 +3,13 @@ import SpriteSummon from "./SpriteSummon.js";
 import SpriteSummonInterval from "./SpriteSummonInterval.js";
 import Sprite from "./Sprites.js";
 import modeloMapa1 from "../maps/mapa1.js";
+import modeloMapa2 from "../maps/mapa2.js";
 import Mapa from "./Mapa.js";
 import SpriteWyvern from "./SpriteWyvern.js";
 import SpriteCoin from "./SpriteCoin.js";
+import SpriteChest from "./SpriteChest.js";
 
 export default class CenaJogo extends Cena {
-
     quandoColidir(a, b) {
         if (a.tags.has("pc") && b.tags.has("coin")) {
             if (!this.aRemover.includes(b)) this.aRemover.push(b);
@@ -18,21 +19,18 @@ export default class CenaJogo extends Cena {
             if (!this.aRemover.includes(a)) this.aRemover.push(a);
             this.pontos++;
             return;
-        } else if (){
-
-
-        }
-        else (!this.aRemover.includes(a)) this.aRemover.push(a);
+        } else if (b.tags.has("chest")) {
+            this.fase = 2;
+        } else if (!this.aRemover.includes(a)) this.aRemover.push(a);
     }
-
 
     preparar() {
         super.preparar();
         const mapa1 = new Mapa(this.mapX, this.mapY, 32, this.assets);
+        if (this.fase == 1) mapa1.carregaMapa(modeloMapa1);
+        else mapa1.carregaMapa(modeloMapa2);
 
-        mapa1.carregaMapa(modeloMapa1);
         this.configuraMapa(mapa1);
-
         const summon = new SpriteSummon(
             10,
             this,
@@ -80,6 +78,15 @@ export default class CenaJogo extends Cena {
         };
         pc.tags.add("pc");
         this.adicionar(pc);
+        const chest = new SpriteChest({
+            x: 415,
+            y: 415,
+            w: 32,
+            h: 32,
+            assets: this.assets,
+            tags: ["chest"],
+        });
+        this.adicionar(chest);
 
         // const pc1 = new SpriteCoin({
         //     vx: 0,

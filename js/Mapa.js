@@ -1,4 +1,5 @@
 import { Tiles1 } from "../maps/modeloTiles.js";
+import SpriteChest from "./SpriteChest.js";
 
 export default class Mapa {
     constructor(linhas = 8, colunas = 12, tamanho = 32, assets) {
@@ -40,30 +41,7 @@ export default class Mapa {
                         ctx.lineWidht = 1;
                         ctx.strokeStyle = "orange";
                         break;
-                    case 3:
-                        ctx.drawImage(
-                            this.assets.img("terreno"),
-                            this.modeloTiles.piso[0],
-                            this.modeloTiles.piso[1],
-                            this.modeloTiles.piso[2],
-                            this.modeloTiles.piso[3],
-                            c * 32,
-                            l * 32,
-                            32,
-                            32
-                        );
-                        ctx.drawImage(
-                            this.assets.img("chest"),
-                            35,
-                            35,
-                            35,
-                            35,
-                            c * 32,
-                            l * 32,
-                            32,
-                            32
-                        );
-                        break;
+
                     default:
                         ctx.drawImage(
                             this.assets.img("terreno"),
