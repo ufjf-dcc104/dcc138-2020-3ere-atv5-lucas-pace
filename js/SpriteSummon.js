@@ -11,8 +11,13 @@ export default class SpriteSummon {
         this.cena = cena;
         this.assets = assets;
         for (var i = 0; i < quantidade; i++) {
-            const posX = Math.random() * (maxW - 66) + 33;
-            const posY = Math.random() * (maxH - 66) + 33;
+            // var posX = Math.random() * (maxW - 66) + 33;
+            // const posY = Math.random() * (maxH - 66) + 33;
+
+            const posX = (maxW / 15) * (Math.floor((Math.random() * 100) % 13) + 1 );
+            const posY = (maxW / 15) * (Math.floor((Math.random() * 100) % 13) + 1); // modd 13 + 1
+
+            // const posY = Math.random() * (maxH - 66) + 33;
 
             const sprite = new SpriteCoin({
                 // vx:
@@ -30,6 +35,7 @@ export default class SpriteSummon {
                 assets: this.assets,
                 tags: ["coin"],
             });
+
             var returned = cena.adicionar(sprite);
             // se não for uma posicao valida, criar outro sprite
             if (returned === null) i--;

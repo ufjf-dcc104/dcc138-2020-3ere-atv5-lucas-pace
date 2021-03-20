@@ -1,7 +1,6 @@
 import Sprite from "./Sprites.js";
 import AssetManager from "./AssetManager.js";
 
-
 export default class SpriteCoin extends Sprite {
     passo(dt) {
         this.animar(this.cena.ctx);
@@ -39,4 +38,6 @@ export default class SpriteCoin extends Sprite {
         );
         this.quadro = this.quadro > 12 ? 0 : this.quadro + this.cena.dt * 6;
     }
+
+
 }

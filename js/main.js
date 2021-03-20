@@ -46,6 +46,7 @@ assets.carregarImagem("coin", "assets/coin.png");
 assets.carregarImagem("orc", "assets/orc.png");
 assets.carregarImagem("skelly", "assets/skelly.png");
 assets.carregarImagem("terreno", "assets/terreno.png");
+assets.carregarImagem("chest", "assets/chest.png");
 assets.carregarAudio("zap", "assets/zap.wav");
 assets.carregarAudio("boom", "assets/boom.wav");
 

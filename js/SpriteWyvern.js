@@ -6,7 +6,6 @@ export default class SpriteWyvern extends Sprite {
         this.controlar(dt);
         this.mover(dt);
         this.animar(this.cena.ctx);
-
     }
 
     /*
@@ -34,8 +33,8 @@ export default class SpriteWyvern extends Sprite {
             86,
             64,
             //dx, dy, dw, dh
-            this.x - 20,
-            this.y - 20,
+            this.x - 24,
+            this.y - 24,
             this.w,
             this.h
         );
