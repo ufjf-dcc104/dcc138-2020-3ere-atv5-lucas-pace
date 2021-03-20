@@ -11,6 +11,11 @@ export default class CenaFim extends Cena {
 
         if (this.assets.acabou()) {
             this.ctx.fillText(
+                "Sua pontuação foi de " + this.game.pontos,
+                this.canvas.width / 2,
+                this.canvas.height / 2
+            );
+            this.ctx.fillText(
                 "Aperte espaço para jogar novamente",
                 this.canvas.width / 2,
                 this.canvas.height / 2 + 50

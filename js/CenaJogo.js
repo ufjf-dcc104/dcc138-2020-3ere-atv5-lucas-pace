@@ -13,11 +13,11 @@ export default class CenaJogo extends Cena {
     quandoColidir(a, b) {
         if (a.tags.has("pc") && b.tags.has("coin")) {
             if (!this.aRemover.includes(b)) this.aRemover.push(b);
-            this.pontos++;
+            this.game.pontos++;
             return;
         } else if (a.tags.has("coin") && b.tags.has("pc")) {
             if (!this.aRemover.includes(a)) this.aRemover.push(a);
-            this.pontos++;
+            this.game.pontos++;
             return;
         } else if (b.tags.has("chest") || a.tags.has("chest")) {
             if (this.fase == 2) {
@@ -28,7 +28,6 @@ export default class CenaJogo extends Cena {
                 this.preparar();
             }
         } else if (!this.aRemover.includes(a)) this.aRemover.push(a);
-        console.log(this.rodando, this.game.cena);
     }
 
     preparar() {
@@ -140,6 +139,6 @@ export default class CenaJogo extends Cena {
         this.ctx.fillText(this.assets?.progresso(), 10, 20);
         this.ctx.fillStyle = "red";
         this.ctx.font = "20px Impact";
-        this.ctx.fillText(this.pontos, 420, 22);
+        this.ctx.fillText(this.game.pontos, 420, 22);
     }
 }

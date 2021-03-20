@@ -7,6 +7,7 @@ export default class Game {
         this.cena = null
         this.input = input
         this.game = null
+        this.pontos = 0
 
 
     }
