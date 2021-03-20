@@ -50,6 +50,7 @@ export default class Cena {
         this.passo(this.dt);
         this.desenhar();
         this.checaColisao();
+        
         this.t0 = t;
         if (this.rodando) this.iniciar();
         this.removeSprites();

@@ -4,7 +4,7 @@ import CenaJogo from "./CenaJogo.js";
 
 import Mixer from "./Mixer.js";
 
-import ImputManager from "./InputManager.js";
+import InputManager from "./InputManager.js";
 
 
 import Game from "./Game.js";
@@ -12,7 +12,7 @@ import CenaCarregando from "./CenaCarregando.js";
 import CenaFim from "./CenaFim.js";
 
 
-const input = new ImputManager();
+const input = new InputManager();
 const mixer = new Mixer(10);
 const assets = new AssetManager(mixer);
 const canvas = document.querySelector("canvas");
