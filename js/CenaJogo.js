@@ -5,21 +5,20 @@ import Sprite from "./Sprites.js";
 import modeloMapa1 from "../maps/mapa1.js";
 import Mapa from "./Mapa.js";
 import SpriteWyvern from "./SpriteWyvern.js";
+import SpriteCoin from "./SpriteCoin.js";
 
 export default class CenaJogo extends Cena {
     quandoColidir(a, b) {
-        if (!this.aRemover.includes(a)) this.aRemover.push(a);
-        if (!this.aRemover.includes(b)) this.aRemover.push(b);
-        console.log(b.tags);
-        if (a.tags.has("pc") && b.tags.has("enemy")) {
-            this.rodando = false;
-            this.game.selecionaCena("fim");
+        if (a.tags.has("pc") && b.tags.has("coin")) {
+            if (!this.aRemover.includes(b)) this.aRemover.push(b);
+            this.pontos++;
+            return;
         }
-        this.assets.play("boom");
+        if (!this.aRemover.includes(a)) this.aRemover.push(a);
     }
 
     preparar() {
-        super.preparar()
+        super.preparar();
         const mapa1 = new Mapa(this.mapX, this.mapY, 32, this.assets);
 
         mapa1.carregaMapa(modeloMapa1);
@@ -38,26 +37,26 @@ export default class CenaJogo extends Cena {
             x: 100,
             y: 100,
             assets: this.assets,
-            t: this.t
+            //t: this.t
         });
 
-        const cena = this
+        const cena = this;
         pc.controlar = function (dt) {
             if (cena.game.input.comandos.get("MOVE_ESQUERDA")) {
                 this.vx = -50;
-                this.pose = 1
+                this.pose = 1;
             } else if (cena.game.input.comandos.get("MOVE_DIREITA")) {
                 this.vx = 50;
-                this.pose = 2
+                this.pose = 2;
             } else {
                 this.vx = 0;
             }
             if (cena.game.input.comandos.get("MOVE_CIMA")) {
                 this.vy = -50;
-                this.pose = 3
+                this.pose = 3;
             } else if (cena.game.input.comandos.get("MOVE_BAIXO")) {
                 this.vy = 50;
-                this.pose = 0
+                this.pose = 0;
             } else {
                 this.vy = 0;
             }
@@ -65,14 +64,16 @@ export default class CenaJogo extends Cena {
         pc.tags.add("pc");
         this.adicionar(pc);
 
-        // const pc1 = new Sprite({
-        //     vx: 0,
-        //     x: 100,
-        //     y: 50,
-        //     color: "silver",
-        //     controlar: perseguePC,
-        //     tags: ["enemy"],
-        // });
+        const pc1 = new SpriteCoin({
+            vx: 0,
+            x: 100,
+            y: 50,
+            w: 14,
+            h: 14,
+            tags: ["coin"],
+            assets: this.assets,
+        });
+        this.adicionar(pc1);
 
         // function perseguePC(dt) {
         //     this.vx = 25 * Math.sign(pc.x - this.x);

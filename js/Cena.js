@@ -11,6 +11,7 @@ export default class Cena {
         this.ctx = canvas?.getContext("2d");
         this.assets = assets;
         this.game = null;
+        this.pontos = 0
         this.preparar();
     }
 
@@ -50,7 +51,7 @@ export default class Cena {
         this.passo(this.dt);
         this.desenhar();
         this.checaColisao();
-        
+
         this.t0 = t;
         if (this.rodando) this.iniciar();
         this.removeSprites();

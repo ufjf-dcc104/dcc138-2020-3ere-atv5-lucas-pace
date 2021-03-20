@@ -26,7 +26,6 @@ export default class SpriteWyvern extends Sprite {
     }
 
     animar(ctx) {
-        console.log(this.pose)
         ctx.drawImage(
             this.assets.img("wyvern"),
             //sx, sy, sw, sh
@@ -35,8 +34,8 @@ export default class SpriteWyvern extends Sprite {
             86,
             64,
             //dx, dy, dw, dh
-            this.x - 20,
-            this.y - 20,
+            this.x - 24,
+            this.y - 24,
             this.w,
             this.h
         );

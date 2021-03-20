@@ -1,4 +1,6 @@
 import Sprite from "./Sprites.js";
+import AssetManager from "./AssetManager.js";
+
 
 export default class SpriteCoin extends Sprite {
     passo(dt) {
@@ -17,25 +19,24 @@ export default class SpriteCoin extends Sprite {
 
     */
 
-    // desenhar(ctx) {
-    //     this.animar(ctx);
-    // }
+    desenhar(ctx) {
+        this.animar(ctx);
+    }
 
     animar(ctx) {
-
         ctx.drawImage(
-            this.assets.img("wyvern"),
+            this.assets.img("coin"),
             //sx, sy, sw, sh
-            Math.floor(this.quadro) * 96,
-            this.pose * 64,
-            86,
-            64,
+            Math.floor(this.quadro) * 16,
+            this.pose * 16,
+            16,
+            16,
             //dx, dy, dw, dh
-            this.x - 20,
-            this.y - 20,
+            this.x,
+            this.y,
             this.w,
             this.h
         );
-        this.quadro = this.quadro > 3 ? 0 : this.quadro + this.cena.dt * 2;
+        this.quadro = this.quadro > 12 ? 0 : this.quadro + this.cena.dt * 6;
     }
 }
