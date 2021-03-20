@@ -13,8 +13,11 @@ export default class CenaJogo extends Cena {
             if (!this.aRemover.includes(b)) this.aRemover.push(b);
             this.pontos++;
             return;
-        }
-        if (!this.aRemover.includes(a)) this.aRemover.push(a);
+        } else if (a.tags.has("coin") && b.tags.has("pc")) {
+            if (!this.aRemover.includes(a)) this.aRemover.push(a);
+            this.pontos++;
+            return;
+        } else if (!this.aRemover.includes(a)) this.aRemover.push(a);
     }
 
     preparar() {
@@ -24,7 +27,13 @@ export default class CenaJogo extends Cena {
         mapa1.carregaMapa(modeloMapa1);
         this.configuraMapa(mapa1);
 
-        //const summon = new SpriteSummon(1, this, canvas.width, canvas.height)
+        const summon = new SpriteSummon(
+            10,
+            this,
+            this.canvas.width,
+            this.canvas.height,
+            this.assets
+        );
         // const summonInterval = new SpriteSummonInterval(this, 4000, canvas.width, canvas.height)
         // this.summonSprite = true; //boleano para habilitar o summon de sprite na cena
         // summonInterval.startSummon()
@@ -109,6 +118,6 @@ export default class CenaJogo extends Cena {
         this.ctx.fillText(this.assets?.progresso(), 10, 20);
         this.ctx.fillStyle = "red";
         this.ctx.font = "20px Impact";
-        this.ctx.fillText(this.pontos, 420, 20);
+        this.ctx.fillText(this.pontos, 420, 22);
     }
 }

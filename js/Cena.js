@@ -21,8 +21,8 @@ export default class Cena {
 
     adicionar(sprite) {
         sprite.cena = this;
+        // check para nao criar sprite se estiver numa posicao invalida
         if (sprite.checarValido())
-            // check para nao criar sprite se estiver numa posicao invalida
             this.sprites.push(sprite);
         else return null;
     }
