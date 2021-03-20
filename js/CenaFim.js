@@ -20,6 +20,7 @@ export default class CenaFim extends Cena {
                 this.canvas.width / 2,
                 this.canvas.height / 2 + 50
             );
+
         }
     }
 
@@ -27,8 +28,8 @@ export default class CenaFim extends Cena {
     quadro(t) {
         this.t0 = this.t0 ?? t;
         this.dt = (t - this.t0) / 1000;
-
         if (this.assets.acabou() && this.input.comandos.get("PROXIMA_CENA")) {
+            this.game.pontos = 0
             this.game.selecionaCena("jogo")
             return
         }

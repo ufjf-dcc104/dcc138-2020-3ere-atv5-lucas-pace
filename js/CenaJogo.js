@@ -22,9 +22,10 @@ export default class CenaJogo extends Cena {
         } else if (b.tags.has("chest") || a.tags.has("chest")) {
             if (this.fase == 2) {
                 this.rodando = false;
+                this.fase = 1
                 this.game.selecionaCena("fim");
             } else {
-                this.fase++;
+                this.fase = 2
                 this.preparar();
             }
         } else if (!this.aRemover.includes(a)) this.aRemover.push(a);
@@ -34,7 +35,7 @@ export default class CenaJogo extends Cena {
         super.preparar();
         const mapa1 = new Mapa(this.mapX, this.mapY, 32, this.assets);
         if (this.fase == 1) mapa1.carregaMapa(modeloMapa1);
-        else mapa1.carregaMapa(modeloMapa2);
+        else  mapa1.carregaMapa(modeloMapa2);
 
         this.configuraMapa(mapa1);
         const summon = new SpriteSummon(
