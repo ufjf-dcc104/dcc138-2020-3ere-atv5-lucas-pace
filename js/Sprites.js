@@ -18,8 +18,8 @@ export default class Sprite {
         this.y = y;
         this.w = w;
         this.h = h;
-        this.vx = vx;
-        this.vy = vy;
+        this.vx = 0;
+        this.vy = 0;
         this.color = color;
         this.cena = null;
         this.mx = 0;
@@ -196,8 +196,8 @@ export default class Sprite {
     controlar(dt) {}
 
     mover(dt) {
-        this.x = this.x + this.vx * dt;
-        this.y = this.y + this.vy * dt;
+        this.x = this.x + this.vx * 3*dt;
+        this.y = this.y + this.vy * 3*dt;
         this.mx = Math.floor(this.x / this.cena.mapa.SIZE);
         this.my = Math.floor(this.y / this.cena.mapa.SIZE);
     }

@@ -19,9 +19,16 @@ export default class CenaJogo extends Cena {
             if (!this.aRemover.includes(a)) this.aRemover.push(a);
             this.pontos++;
             return;
-        } else if (b.tags.has("chest")) {
-            this.fase = 2;
+        } else if (b.tags.has("chest") || a.tags.has("chest")) {
+            if (this.fase == 2) {
+                this.rodando = false;
+                this.game.selecionaCena("fim");
+            } else {
+                this.fase++;
+                this.preparar();
+            }
         } else if (!this.aRemover.includes(a)) this.aRemover.push(a);
+        console.log(this.rodando, this.game.cena);
     }
 
     preparar() {
