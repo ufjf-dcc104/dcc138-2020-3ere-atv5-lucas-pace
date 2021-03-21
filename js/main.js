@@ -47,6 +47,8 @@ assets.carregarImagem("orc", "assets/orc.png");
 assets.carregarImagem("skelly", "assets/skelly.png");
 assets.carregarImagem("terreno", "assets/terreno.png");
 assets.carregarImagem("chest", "assets/chest.png");
+assets.carregarImagem("ghost", "assets/ghost.png");
+assets.carregarImagem("warrior", "assets/warrior.png");
 assets.carregarAudio("zap", "assets/zap.wav");
 assets.carregarAudio("boom", "assets/boom.wav");
 

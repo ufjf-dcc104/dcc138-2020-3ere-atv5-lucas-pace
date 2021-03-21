@@ -1,4 +1,5 @@
 import SpriteCoin from "./SpriteCoin.js";
+import SpriteGhost from "./SpriteGhost.js";
 import Sprite from "./Sprites.js";
 
 /*
@@ -6,26 +7,26 @@ Cria quantidade X de sprites numa cena com os X e Y dentro de um intervalo
 */
 
 export default class SpriteSummon {
-    constructor(quantidade = 0, cena, maxW, maxH, assets) {
+    constructor(quantidade = 0, cena, maxW, maxH, assets, pc) {
         this.quantidade = quantidade;
         this.cena = cena;
         this.assets = assets;
-        for (var i = 0; i < quantidade; i++) {
-            // var posX = Math.random() * (maxW - 66) + 33;
-            // const posY = Math.random() * (maxH - 66) + 33;
+        this.maxW = maxW;
+        this.maxH = maxH;
+        this.pc = pc;
+        this.ghost = null;
+        this.summonGhost();
+        this.summonCoin();
+    }
 
-            const posX = (maxW / 15) * (Math.floor((Math.random() * 100) % 13) + 1 );
-            const posY = (maxW / 15) * (Math.floor((Math.random() * 100) % 13) + 1); // modd 13 + 1
-
-            // const posY = Math.random() * (maxH - 66) + 33;
+    summonCoin() {
+        for (var i = 0; i < this.quantidade; i++) {
+            const posX =
+                (this.maxW / 15) * (Math.floor((Math.random() * 100) % 13) + 1);
+            const posY =
+                (this.maxH / 15) * (Math.floor((Math.random() * 100) % 13) + 1); // modd 13 + 1
 
             const sprite = new SpriteCoin({
-                // vx:
-                //     (Math.floor(Math.random() * (25 - 5)) + 5) *
-                //     (Math.random() < 0.5 ? -1 : 1),
-                // vy:
-                //     (Math.floor(Math.random() * (25 - 5)) + 5) *
-                //     (Math.random() < 0.5 ? -1 : 1),
                 vx: 0,
                 vy: 0,
                 x: posX,
@@ -35,10 +36,44 @@ export default class SpriteSummon {
                 assets: this.assets,
                 tags: ["coin"],
             });
-
-            var returned = cena.adicionar(sprite);
+            var returned = this.cena.adicionar(sprite);
             // se não for uma posicao valida, criar outro sprite
             if (returned === null) i--;
+        }
+    }
+
+    summonGhost() {
+        for (var i = 0; i < this.quantidade; i++) {
+            const posX =
+                (this.maxW / 15) * (Math.floor((Math.random() * 100) % 13) + 1);
+            const posY =
+                (this.maxH / 15) * (Math.floor((Math.random() * 100) % 13) + 1); // modd 13 + 1
+
+            const ghost = new SpriteGhost({
+                vx: 0,
+                vy: 0,
+                x: posX - 16,
+                y: posY - 16,
+                w: 32,
+                h: 32,
+                pc: this.pc,
+                color: "red",
+                assets: this.assets,
+                tags: ["ghost"],
+                // controlar: perseguePC,
+            });
+            this.ghost = ghost;
+
+            this.x = posX;
+            this.y = posY;
+            var returned = this.cena.adicionar(ghost);
+            // se não for uma posicao valida, criar outro sprite
+            if (returned === null) i--;
+        }
+
+        function perseguePC() {
+            this.vx = 15 * Math.sign(this.pc.x - this.x);
+            this.vy = 15 * Math.sign(this.pc.y - this.y);
         }
     }
 }

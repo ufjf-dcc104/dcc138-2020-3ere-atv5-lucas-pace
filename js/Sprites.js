@@ -13,6 +13,7 @@ export default class Sprite {
         tags = [],
         assets = null,
         t = 0,
+        pc = null
     } = {}) {
         this.x = x;
         this.y = y;
@@ -30,6 +31,7 @@ export default class Sprite {
         this.t = t;
         this.quadro = 0;
         this.pose = 0;
+        this.pc = pc
         tags.forEach((tag) => {
             this.tags.add(tag);
         });

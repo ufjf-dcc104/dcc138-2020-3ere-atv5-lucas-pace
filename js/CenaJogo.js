@@ -8,6 +8,7 @@ import Mapa from "./Mapa.js";
 import SpriteWyvern from "./SpriteWyvern.js";
 import SpriteCoin from "./SpriteCoin.js";
 import SpriteChest from "./SpriteChest.js";
+import SpriteWarrior from "./SpriteWarrior.js";
 
 export default class CenaJogo extends Cena {
     quandoColidir(a, b) {
@@ -22,12 +23,15 @@ export default class CenaJogo extends Cena {
         } else if (b.tags.has("chest") || a.tags.has("chest")) {
             if (this.fase == 2) {
                 this.rodando = false;
-                this.fase = 1
+                this.fase = 1;
                 this.game.selecionaCena("fim");
             } else {
-                this.fase = 2
+                this.fase = 2;
                 this.preparar();
             }
+        } else if (a.tags.has("ghost") || b.tags.has("ghost")) {
+            if (a.tags.has("pc")) this.aRemover.push(a);
+            else if (b.tags.has("pc")) this.aRemover.push(b);
         } else if (!this.aRemover.includes(a)) this.aRemover.push(a);
     }
 
@@ -35,15 +39,28 @@ export default class CenaJogo extends Cena {
         super.preparar();
         const mapa1 = new Mapa(this.mapX, this.mapY, 32, this.assets);
         if (this.fase == 1) mapa1.carregaMapa(modeloMapa1);
-        else  mapa1.carregaMapa(modeloMapa2);
+        else mapa1.carregaMapa(modeloMapa2);
 
         this.configuraMapa(mapa1);
+
+        const pc = new SpriteWarrior({
+            vx: 0,
+            vy: 0,
+            x: 64,
+            y: 64,
+            w: 32,
+            h: 32,
+            assets: this.assets,
+            //t: this.t
+        });
+
         const summon = new SpriteSummon(
-            10,
+            3,
             this,
             this.canvas.width,
             this.canvas.height,
-            this.assets
+            this.assets,
+            pc
         );
         // const summonInterval = new SpriteSummonInterval(this, 4000, canvas.width, canvas.height)
         // this.summonSprite = true; //boleano para habilitar o summon de sprite na cena
@@ -51,35 +68,25 @@ export default class CenaJogo extends Cena {
 
         //new SpriteSummon(100, this,canvas.width,canvas.height);
 
-        const pc = new SpriteWyvern({
-            vx: 0,
-            vy: 0,
-            x: 100,
-            y: 100,
-            w: 32,
-            h: 32,
-            assets: this.assets,
-            //t: this.t
-        });
-
         const cena = this;
         pc.controlar = function (dt) {
             if (cena.game.input.comandos.get("MOVE_ESQUERDA")) {
                 this.vx = -50;
-                this.pose = 1;
+                this.pose = 9;
             } else if (cena.game.input.comandos.get("MOVE_DIREITA")) {
                 this.vx = 50;
-                this.pose = 2;
+                this.pose = 11;
             } else {
                 this.vx = 0;
             }
             if (cena.game.input.comandos.get("MOVE_CIMA")) {
                 this.vy = -50;
-                this.pose = 3;
+                this.pose = 8;
             } else if (cena.game.input.comandos.get("MOVE_BAIXO")) {
                 this.vy = 50;
-                this.pose = 0;
+                this.pose = 10;
             } else {
+                this.aux = 0
                 this.vy = 0;
             }
         };
@@ -105,11 +112,6 @@ export default class CenaJogo extends Cena {
         //     assets: this.assets,
         // });
         // this.adicionar(pc1);
-
-        // function perseguePC(dt) {
-        //     this.vx = 25 * Math.sign(pc.x - this.x);
-        //     this.vy = 25 * Math.sign(pc.y - this.y);
-        // }
 
         // this.adicionar(pc1);
 

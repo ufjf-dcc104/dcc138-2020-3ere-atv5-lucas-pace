@@ -1,16 +1,17 @@
-import Sprite from './Sprites.js';
-import SpriteSummon from './SpriteSummon.js';
+import Sprite from "./Sprites.js";
+import SpriteSummon from "./SpriteSummon.js";
 
 /*
 Cria quantidade X de sprites numa cena com os X e Y dentro de um intervalo
 */
 
 export default class SpriteSummonInterval {
-    constructor(cena, interval, width, height) {
+    constructor(cena, interval, width, height, pc) {
         this.cena = cena;
         this.interval = interval;
-        this.width = width
-        this.height = height
+        this.width = width;
+        this.height = height;
+        this.pc = pc
     }
 
     startSummon() {
@@ -19,8 +20,7 @@ export default class SpriteSummonInterval {
         }
     }
     summonByTime() {
-        new SpriteSummon(1, this.cena, this.width, this.height)
+        new SpriteSummon(1, this.cena, this.width, this.height, this.pc);
         setTimeout(this.summonByTime.bind(this), this.interval);
     }
-
 }
