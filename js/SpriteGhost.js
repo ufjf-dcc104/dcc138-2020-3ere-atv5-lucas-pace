@@ -26,12 +26,12 @@ export default class SpriteGhost extends Sprite {
     }
 
     animar(ctx) {
-        this.pose = 2;
+
         ctx.drawImage(
             this.assets.img("ghost"),
             //sx, sy, sw, sh
             Math.floor(this.quadro) * 48 + 288,
-            this.pose * 48 + 192,
+            this.pose * 48 + 192 + 48 * this.pose,
             48,
             48,
             //dx, dy, dw, dh
@@ -41,5 +41,14 @@ export default class SpriteGhost extends Sprite {
             this.h
         );
         this.quadro = this.quadro > 6 ? 0 : this.quadro + this.cena.dt * 1;
+    }
+
+
+    checarValido() {
+        var mx = Math.floor(this.x / this.cena.mapa.SIZE);
+        var my = Math.floor(this.y / this.cena.mapa.SIZE);
+        if (this.cena.mapa.tiles[my][mx] == 0 && my > 5 && my > 5) {
+            return true;
+        }
     }
 }

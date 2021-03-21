@@ -12,15 +12,18 @@ import SpriteWarrior from "./SpriteWarrior.js";
 
 export default class CenaJogo extends Cena {
     quandoColidir(a, b) {
-        if (a.tags.has("pc") && b.tags.has("coin")) {
+        if (a.tags.has("pc") && b.tags.has("coin")) { // COLISAO COIN PC
             if (!this.aRemover.includes(b)) this.aRemover.push(b);
             this.game.pontos++;
             return;
-        } else if (a.tags.has("coin") && b.tags.has("pc")) {
+        } else if (a.tags.has("coin") && b.tags.has("pc")) {  //COLISAO COIN PC
             if (!this.aRemover.includes(a)) this.aRemover.push(a);
             this.game.pontos++;
             return;
-        } else if (b.tags.has("chest") || a.tags.has("chest")) {
+        } else if (
+            (b.tags.has("chest") || a.tags.has("chest")) && // COLISAO PC CHEST
+            (b.tags.has("pc") || a.tags.has("pc"))
+        ) {
             if (this.fase == 2) {
                 this.rodando = false;
                 this.fase = 1;
@@ -29,9 +32,18 @@ export default class CenaJogo extends Cena {
                 this.fase = 2;
                 this.preparar();
             }
-        } else if (a.tags.has("ghost") || b.tags.has("ghost")) {
-            if (a.tags.has("pc")) this.aRemover.push(a);
-            else if (b.tags.has("pc")) this.aRemover.push(b);
+        } else if (a.tags.has("ghost") || b.tags.has("ghost")) {    // COLISAO GHOST PC
+            if (a.tags.has("pc")) {
+                this.aRemover.push(a);
+                this.rodando = false;
+                this.fase = 1;
+                this.game.selecionaCena("fim");
+            } else if (b.tags.has("pc")) {
+                this.aRemover.push(b);
+                this.rodando = false;
+                this.fase = 1;
+                this.game.selecionaCena("fim");
+            }
         } else if (!this.aRemover.includes(a)) this.aRemover.push(a);
     }
 
@@ -55,7 +67,7 @@ export default class CenaJogo extends Cena {
         });
 
         const summon = new SpriteSummon(
-            3,
+            4,
             this,
             this.canvas.width,
             this.canvas.height,
@@ -86,7 +98,7 @@ export default class CenaJogo extends Cena {
                 this.vy = 50;
                 this.pose = 10;
             } else {
-                this.aux = 0
+                this.aux = 0;
                 this.vy = 0;
             }
         };

@@ -20,7 +20,8 @@ export default class SpriteSummon {
     }
 
     summonCoin() {
-        for (var i = 0; i < this.quantidade; i++) {
+        const qtd = this.quantidade * 3
+        for (var i = 0; i < qtd; i++) {
             const posX =
                 (this.maxW / 15) * (Math.floor((Math.random() * 100) % 13) + 1);
             const posY =
@@ -60,7 +61,7 @@ export default class SpriteSummon {
                 color: "red",
                 assets: this.assets,
                 tags: ["ghost"],
-                // controlar: perseguePC,
+                controlar: perseguePC,
             });
             this.ghost = ghost;
 
@@ -74,6 +75,12 @@ export default class SpriteSummon {
         function perseguePC() {
             this.vx = 15 * Math.sign(this.pc.x - this.x);
             this.vy = 15 * Math.sign(this.pc.y - this.y);
+            if (this.vx > 0) this.pose = 1;
+            else if (this.vx < 0) this.pose = 0.5;
+            // else if (this.vy > 0) this.pose = 2;
+            // else if (this.vy < 0) this.pose = 0;
+
+
         }
     }
 }
