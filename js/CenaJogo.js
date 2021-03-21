@@ -85,22 +85,28 @@ export default class CenaJogo extends Cena {
             if (cena.game.input.comandos.get("MOVE_ESQUERDA")) {
                 this.vx = -50;
                 this.pose = 9;
+                this.aux = 1;
             } else if (cena.game.input.comandos.get("MOVE_DIREITA")) {
                 this.vx = 50;
                 this.pose = 11;
+                this.aux = 1;
             } else {
                 this.vx = 0;
+
             }
             if (cena.game.input.comandos.get("MOVE_CIMA")) {
                 this.vy = -50;
                 this.pose = 8;
+                this.aux = 1;
             } else if (cena.game.input.comandos.get("MOVE_BAIXO")) {
                 this.vy = 50;
                 this.pose = 10;
+                this.aux = 1;
             } else {
-                this.aux = 0;
+
                 this.vy = 0;
             }
+            if(this.vx == 0 && this.vy == 0) this.aux = 0;
         };
         pc.tags.add("pc");
         this.adicionar(pc);

@@ -25,15 +25,14 @@ export default class SpriteWarrior extends Sprite {
     }
 
     animar(ctx) {
-        var aux = 1;
-        if (this.pose == 0) {
-            aux = 0;
+        if (this.vx == 0 && this.vy == 0) {
+            this.aux = 0;
         }
         ctx.drawImage(
             this.assets.img("warrior"),
             //sx, sy, sw, sh
-            Math.floor(this.quadro) * 64 * aux,
-            this.pose * 64 * aux,
+            Math.floor(this.quadro) * 64,
+            this.pose * 64,
             64,
             64,
             //dx, dy, dw, dh
@@ -42,6 +41,7 @@ export default class SpriteWarrior extends Sprite {
             this.w,
             this.h
         );
-        this.quadro = this.quadro > 9 ? 0 : this.quadro + this.cena.dt * 2;
+        if (this.aux != 0)
+            this.quadro = this.quadro > 9 ? 0 : this.quadro + this.cena.dt * 6;
     }
 }
