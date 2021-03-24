@@ -30,12 +30,13 @@ export default class CenaJogo extends Cena {
             (b.tags.has("chest") || a.tags.has("chest")) && // COLISAO PC CHEST
             (b.tags.has("pc") || a.tags.has("pc"))
         ) {
-            this.pontos += 10;
             if (this.fase == 2) {
+                this.game.pontos += 10;
                 this.rodando = false;
                 this.fase = 1;
                 this.game.selecionaCena("fim");
             } else {
+                this.game.pontos += 10;
                 this.fase = 2;
                 this.preparar();
             }
