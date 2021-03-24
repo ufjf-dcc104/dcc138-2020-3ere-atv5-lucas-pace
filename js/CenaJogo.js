@@ -35,10 +35,12 @@ export default class CenaJogo extends Cena {
                 this.rodando = false;
                 this.fase = 1;
                 this.game.selecionaCena("fim");
+                this.assets.play("chest");
             } else {
                 this.game.pontos += 10;
                 this.fase = 2;
                 this.preparar();
+                this.assets.play("chest");
             }
         } else if (a.tags.has("ghost") || b.tags.has("ghost")) {
             // COLISAO GHOST PC
