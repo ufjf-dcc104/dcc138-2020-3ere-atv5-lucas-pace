@@ -12,11 +12,15 @@ import SpriteWarrior from "./SpriteWarrior.js";
 
 export default class CenaJogo extends Cena {
     quandoColidir(a, b) {
-        if (a.tags.has("pc") && b.tags.has("coin")) { // COLISAO COIN PC
+
+        if (a.tags.has("pc") && b.tags.has("coin")) {
+            // COLISAO COIN PC
             if (!this.aRemover.includes(b)) this.aRemover.push(b);
             this.game.pontos++;
+
             return;
-        } else if (a.tags.has("coin") && b.tags.has("pc")) {  //COLISAO COIN PC
+        } else if (a.tags.has("coin") && b.tags.has("pc")) {
+            //COLISAO COIN PC
             if (!this.aRemover.includes(a)) this.aRemover.push(a);
             this.game.pontos++;
             return;
@@ -32,17 +36,20 @@ export default class CenaJogo extends Cena {
                 this.fase = 2;
                 this.preparar();
             }
-        } else if (a.tags.has("ghost") || b.tags.has("ghost")) {    // COLISAO GHOST PC
+        } else if (a.tags.has("ghost") || b.tags.has("ghost")) {
+            // COLISAO GHOST PC
             if (a.tags.has("pc")) {
                 this.aRemover.push(a);
                 this.rodando = false;
                 this.fase = 1;
                 this.game.selecionaCena("fim");
+                this.assets.play("boom");
             } else if (b.tags.has("pc")) {
                 this.aRemover.push(b);
                 this.rodando = false;
                 this.fase = 1;
                 this.game.selecionaCena("fim");
+                this.assets.play("boom");
             }
         } else if (!this.aRemover.includes(a)) this.aRemover.push(a);
     }
@@ -66,17 +73,27 @@ export default class CenaJogo extends Cena {
             //t: this.t
         });
 
-        const summon = new SpriteSummon(
-            4,
+        // const summon = new SpriteSummon(
+        //     4,
+        //     this,
+        //     this.canvas.width,
+        //     this.canvas.height,
+        //     this.assets,
+        //     pc
+        // );
+
+        const summonInterval = new SpriteSummonInterval(
             this,
+            4000,
             this.canvas.width,
             this.canvas.height,
-            this.assets,
-            pc
+            pc,
+            this.assets
         );
-        // const summonInterval = new SpriteSummonInterval(this, 4000, canvas.width, canvas.height)
-        // this.summonSprite = true; //boleano para habilitar o summon de sprite na cena
-        // summonInterval.startSummon()
+        this.summonSprite = true; //boleano para habilitar o summon de sprite
+
+        console.log('call')
+        summonInterval.startSummon();
 
         //new SpriteSummon(100, this,canvas.width,canvas.height);
 
@@ -92,7 +109,6 @@ export default class CenaJogo extends Cena {
                 this.aux = 1;
             } else {
                 this.vx = 0;
-
             }
             if (cena.game.input.comandos.get("MOVE_CIMA")) {
                 this.vy = -50;
@@ -103,10 +119,9 @@ export default class CenaJogo extends Cena {
                 this.pose = 10;
                 this.aux = 1;
             } else {
-
                 this.vy = 0;
             }
-            if(this.vx == 0 && this.vy == 0) this.aux = 0;
+            if (this.vx == 0 && this.vy == 0) this.aux = 0;
         };
         pc.tags.add("pc");
         this.adicionar(pc);

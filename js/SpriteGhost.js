@@ -6,20 +6,9 @@ export default class SpriteGhost extends Sprite {
         this.controlar(dt);
         this.mover(dt);
         this.animar(this.cena.ctx);
-        // console.log(this.pc)
     }
 
-    /*
-   ctx.drawImage(archer,
-                //sx, sy, sw, sh
-                Math.floor(quadro) * 64, Math.floor(POSES[poseAtual].pose) * 64, 64, 64,
-                //dx, dy, dw, dh
-                0, 0, 64, 64
-            )
-            quadro = quadro > POSES[poseAtual].pmax ? 0 : quadro + POSES[poseAtual].pv * dt;
 
-
-    */
 
     desenhar(ctx) {
         this.animar(ctx);

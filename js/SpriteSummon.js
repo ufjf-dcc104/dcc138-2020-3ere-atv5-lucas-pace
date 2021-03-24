@@ -7,7 +7,16 @@ Cria quantidade X de sprites numa cena com os X e Y dentro de um intervalo
 */
 
 export default class SpriteSummon {
-    constructor(quantidade = 0, cena, maxW, maxH, assets, pc) {
+    constructor(
+        quantidade = 0,
+        cena,
+        assets,
+        maxW,
+        maxH,
+        pc = null,
+        ghost = true,
+        coin = true
+    ) {
         this.quantidade = quantidade;
         this.cena = cena;
         this.assets = assets;
@@ -15,12 +24,12 @@ export default class SpriteSummon {
         this.maxH = maxH;
         this.pc = pc;
         this.ghost = null;
-        this.summonGhost();
-        this.summonCoin();
+        if (ghost) this.summonGhost();
+        if (coin) this.summonCoin();
     }
 
     summonCoin() {
-        const qtd = this.quantidade * 3
+        const qtd = this.quantidade;
         for (var i = 0; i < qtd; i++) {
             const posX =
                 (this.maxW / 15) * (Math.floor((Math.random() * 100) % 13) + 1);
@@ -79,8 +88,6 @@ export default class SpriteSummon {
             else if (this.vx < 0) this.pose = 0.5;
             // else if (this.vy > 0) this.pose = 2;
             // else if (this.vy < 0) this.pose = 0;
-
-
         }
     }
 }
