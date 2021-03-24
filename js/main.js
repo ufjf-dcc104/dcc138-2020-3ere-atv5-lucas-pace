@@ -51,6 +51,7 @@ assets.carregarImagem("ghost", "assets/ghost.png");
 assets.carregarImagem("warrior", "assets/warrior.png");
 assets.carregarAudio("zap", "assets/zap.wav");
 assets.carregarAudio("boom", "assets/boom.wav");
+assets.carregarAudio("coin", "assets/coin.wav");
 
 game.iniciar();
 

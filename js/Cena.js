@@ -13,27 +13,60 @@ export default class Cena {
         this.game = null;
         this.preparar();
         this.fase = 1;
+        this.summonTime = 0;
     }
 
-    desenhar() {
-
-    }
+    desenhar() {}
 
     adicionar(sprite) {
         sprite.cena = this;
 
         // check para nao criar sprite se estiver numa posicao invalida
-        if (sprite.checarValido())
-            this.sprites.push(sprite);
-
+        if (sprite.checarValido()) this.sprites.push(sprite);
         else return null;
     }
 
     passo(dt) {
         if (this.assets.acabou()) {
+            this.summonTime += dt;
+            //console.log(dt)
+            this.checkSummon();
             for (const sprite of this.sprites) {
                 sprite.passo(dt);
             }
+        }
+    }
+    checkSummon() {
+        if (this.summonTime > 4) {
+            for (let b = 0; b < this.sprites.length; b++) {
+                if (this.sprites[b].tags.has("pc")) {
+                    var pc = this.sprites[b];
+
+                    break;
+                }
+            }
+            new SpriteSummon(
+                1,
+                this,
+                this.canvas.width,
+                this.canvas.height,
+                this.assets,
+                pc,
+                1,
+                0
+            );
+
+            new SpriteSummon(
+                3,
+                this,
+                this.canvas.width,
+                this.canvas.height,
+                this.assets,
+                pc,
+                0,
+                1
+            );
+            this.summonTime = 0;
         }
     }
     quadro(t) {
